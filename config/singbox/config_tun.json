@@ -66,54 +66,67 @@
 ],
 
   "outbounds": [
-    { "tag": "Node Select", "type": "selector", "outbounds": ["HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "YouTube", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "OpenAI", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "Google", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "Github", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "Microsoft", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "OneDrive", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "Telegram", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
-    { "tag": "Apple", "type": "selector", "outbounds": ["Node Select", "HK Auto", "JP Auto", "US Auto", "Manual", "Auto", "Direct"] },
+    { "tag": "Node Select", "type": "selector", "outbounds": ["DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "YouTube", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "OpenAI", "type": "selector", "outbounds": ["Node Select", "DestinationUS", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "Google", "type": "selector", "outbounds": ["Node Select", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "Github", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "Microsoft", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "OneDrive", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "Telegram", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
+    { "tag": "Apple", "type": "selector", "outbounds": ["Node Select", "DestinationHK", "DestinationAsia", "Manual", "Direct"] },
     { "tag": "Final", "type": "selector", "outbounds": ["Node Select","Direct"] },
-    { "tag": "Manual", "type": "selector", "outbounds": ["{all}"]},
 
-    { "tag": "HK Manual", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }] },
-    { "tag": "JP Manual", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"] }] },
-    { "tag": "US Manual", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }, { "action": "exclude", "keywords": ["香港|港|HK|hk|HongKong"] }] },
-    { "tag": "HK Auto", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
-    { "tag": "US Auto", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 150 },
-    { "tag": "JP Auto", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "DestinationAsia", "type": "selector", "outbounds": ["Manual", "AutoAsia", "AutoJP", "AutoTW", "AutoSG"]},
+    { "tag": "DestinationHK", "type": "selector", "outbounds": ["Manual", "AutoHK"]},
+    { "tag": "DestinationUS", "type": "selector", "outbounds": ["Manual", "AutoUS"]},
+    { "tag": "DestinationTK", "type": "selector", "outbounds": ["Manual", "AutoTK"]},
+
+
+    { "tag": "AutoAsia", "type": "urltest", "outbounds": ["AutoJP", "AutoTW", "AutoSG"]},
+    { "tag": "AutoHK", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "AutoUS", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 150 },
+    { "tag": "AutoTW", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|tw|台湾|台|Taiwan"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "AutoSG", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|sg|新加坡|新|Singapore"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "AutoJP", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "AutoTK", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["TK|tk|土耳其|土|Turkey"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
     { "tag": "Auto", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "Manual", "type": "selector", "outbounds": ["{all}"]},
     { "tag": "Global", "type": "selector", "outbounds": ["{all}"]},
     { "tag": "Direct", "type": "direct" }
   ],
 
   "route":
- {
-   "auto_detect_interface": true,
-   "final": "Final",
-   "rules":
-   [
-     {"action": "sniff"},
-     {"protocol": "dns", "action": "hijack-dns"},
-     {"clash_mode": "direct", "outbound": "Direct"},
-     {"clash_mode": "global", "outbound": "Global"},
-     {"domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "Direct"},
-     {"rule_set": "geosite-private", "outbound": "Direct"},
-     {"rule_set": "geosite-chat", "outbound": "OpenAI"},
-     {"rule_set": "geosite-youtube", "outbound": "YouTube"},
-     {"rule_set": "geosite-github", "outbound": "Github"},
-     {"rule_set": ["geosite-google", "geoip-google"], "outbound": "Google"},
-     {"rule_set": ["geosite-telegram", "geoip-telegram"], "outbound": "Telegram"},
-     {"rule_set": ["geosite-apple", "geoip-apple"], "outbound": "Apple"},
-     {"rule_set": "geosite-onedrive", "outbound": "OneDrive"},
-     {"rule_set": "geosite-microsoft", "outbound": "Microsoft"},
-     {"rule_set": "geosite-geolocation-!cn", "outbound": "Node Select"},
-     {"rule_set": ["geoip-cn", "geosite-cn"], "outbound": "Direct"}
-   ],
+{
+  "auto_detect_interface": true,
+  "final": "Final",
+  "rules":
+  [
+    {"action": "sniff"},
+    {"protocol": "dns", "action": "hijack-dns"},
+    {"clash_mode": "direct", "outbound": "Direct"},
+    {"clash_mode": "global", "outbound": "Global"},
+    {"domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "Direct"},
+    {"rule_set": "geosite-private", "outbound": "Direct"},
+    {"rule_set": "geosite-chat", "outbound": "OpenAI"},
+    {"rule_set": "geosite-youtube", "outbound": "YouTube"},
+    {"rule_set": "geosite-github", "outbound": "Github"},
+    {"rule_set": ["geosite-google", "geoip-google"], "outbound": "Google"},
+    {"rule_set": ["geosite-telegram", "geoip-telegram"], "outbound": "Telegram"},
+    {"rule_set": ["geosite-apple", "geoip-apple"], "outbound": "Apple"},
+    {"rule_set": "geosite-onedrive", "outbound": "OneDrive"},
+    {"rule_set": "geosite-microsoft", "outbound": "Microsoft"},
+    {"rule_set": "geosite-geolocation-!cn", "outbound": "Node Select"},
+    {"rule_set": ["geoip-cn", "geosite-cn"], "outbound": "Direct"},
+    {"rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "DestinationUS"},
+    {"rule_set": ["geoip-ehentai", "geosite-ehentai"], "outbound": "DestinationUS"},
 
-   "rule_set": [
+    {"domain-keyword": ["missav.ai", "surrit.com", "fourhoi.com"], "outbound": "DestinationHK"},
+    {"domain-keyword": "perplexity", "outbound": "DestinationTK"},
+    {"domain-keyword": "steamcontent", "outbound": "DestinationTK"}
+  ],
+
+  "rule_set": [
     { "tag": "geosite-chat", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "Node Select" },
     { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "Node Select" },
     { "tag": "geosite-google", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs", "download_detour": "Node Select" },
@@ -125,12 +138,15 @@
     { "tag": "geosite-geolocation-!cn", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs", "download_detour": "Node Select" },
     { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "Node Select" },
     { "tag": "geosite-private", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "Node Select" },
+    { "tag": "geosite-twitter", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/twitter.srs", "download_detour": "Node Select" },
+    { "tag": "geosite-ehentai", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ehentai.srs", "download_detour": "Node Select" },
 
     { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs", "download_detour": "Node Select" },
     { "tag": "geoip-telegram", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs", "download_detour": "Node Select" },
     { "tag": "geoip-apple", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs", "download_detour": "Node Select" },
     { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/cn.srs", "download_detour": "Node Select" },
-    { "tag": "geoip-private", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/private.srs", "download_detour": "Node Select" }
+    { "tag": "geoip-private", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/private.srs", "download_detour": "Node Select" },
+    { "tag": "geoip-twitter", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/twitter.srs", "download_detour": "Node Select" }
   ]
 }
 }
