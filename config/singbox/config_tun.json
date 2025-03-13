@@ -121,9 +121,9 @@
     {"rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "DestinationUS"},
     {"rule_set": ["geoip-ehentai", "geosite-ehentai"], "outbound": "DestinationUS"},
 
-    {"domain-keyword": ["missav.ai", "surrit.com", "fourhoi.com"], "outbound": "DestinationHK"},
-    {"domain-keyword": "perplexity", "outbound": "DestinationTK"},
-    {"domain-keyword": "steamcontent", "outbound": "DestinationTK"}
+    {"domain_keyword": ["missav.ai", "surrit.com", "fourhoi.com"], "outbound": "DestinationHK"},
+    {"domain_keyword": "perplexity", "outbound": "DestinationTK"},
+    {"domain_keyword": "steamcontent", "outbound": "DestinationTK"}
   ],
 
   "rule_set": [
