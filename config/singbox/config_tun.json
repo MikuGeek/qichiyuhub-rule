@@ -11,7 +11,7 @@
       "external_ui": "./ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "Node Select",
+      "external_ui_download_detour": "DestinationHK",
       "default_mode": "rule"
     },
   "cache_file": {
@@ -26,7 +26,7 @@
     "servers":
     [
       {"tag": "dns_direct", "address": "223.5.5.5", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "Direct"},
-      {"tag": "dns_proxy", "address": "tls://8.8.8.8", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "Node Select"}
+      {"tag": "dns_proxy", "address": "tls://8.8.8.8", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "DestinationHK"}
     ],
     "rules":
     [
@@ -95,8 +95,16 @@
     {"protocol": "dns", "action": "hijack-dns"},
     {"clash_mode": "direct", "outbound": "Direct"},
     {"clash_mode": "global", "outbound": "Global"},
+
     {"domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "Direct"},
     {"rule_set": "geosite-private", "outbound": "Direct"},
+
+    {"domain_keyword": ["missav.ai", "missav.ms"], "outbound": "Direct"},
+    {"domain_keyword": "steamcontent", "outbound": "Direct"},
+
+    {"rule_set": "geosite-perplexity", "outbound": "DestinationTK"},
+    {"rule_set": "geosite-ehentai", "outbound": "DestinationUS"},
+    {"rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "DestinationUS"},
     {"rule_set": "geosite-chat", "outbound": "DestinationUS"},
     {"rule_set": "geosite-youtube", "outbound": "DestinationHK"},
     {"rule_set": "geosite-github", "outbound": "DestinationHK"},
@@ -105,14 +113,10 @@
     {"rule_set": ["geosite-apple", "geoip-apple"], "outbound": "DestinationHK"},
     {"rule_set": "geosite-onedrive", "outbound": "DestinationHK"},
     {"rule_set": "geosite-microsoft", "outbound": "DestinationHK"},
-    {"rule_set": "geosite-geolocation-!cn", "outbound": "DestinationHK"},
-    {"rule_set": ["geoip-cn", "geosite-cn"], "outbound": "DestinationHK"},
-    {"rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "DestinationUS"},
-    {"rule_set": "geosite-ehentai", "outbound": "DestinationUS"},
 
-    {"domain_keyword": ["missav.ai", "surrit.com", "fourhoi.com"], "outbound": "DestinationHK"},
-    {"domain_keyword": "perplexity", "outbound": "DestinationTK"},
-    {"domain_keyword": "steamcontent", "outbound": "DestinationTK"}
+    {"rule_set": "geosite-geolocation-!cn", "outbound": "DestinationAsia"},
+    {"rule_set": ["geoip-cn", "geosite-cn"], "outbound": "Direct"}
+
   ],
 
   "rule_set": [
@@ -129,6 +133,7 @@
     { "tag": "geosite-private", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "Direct" },
     { "tag": "geosite-twitter", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/twitter.srs", "download_detour": "Direct" },
     { "tag": "geosite-ehentai", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ehentai.srs", "download_detour": "Direct" },
+    { "tag": "geosite-perplexity", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/perplexity.srs", "download_detour": "Direct" },
 
     { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs", "download_detour": "Direct" },
     { "tag": "geoip-telegram", "type": "remote", "format": "binary", "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs", "download_detour": "Direct" },
