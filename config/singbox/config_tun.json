@@ -27,17 +27,20 @@
     [
       { "tag": "Local-DNS", "address": "https://223.5.5.5/dns-query", "address_resolver": "Local-DNS-Resolver", "detour": "Direct" },
       { "tag": "Local-DNS-Resolver", "address": "223.5.5.5", "detour": "Direct" },
-      { "tag": "Remote-DNS", "address": "tls://8.8.8.8", "address_resolver": "Local-DNS-Resolver", "detour": "DestinationHK" },
+      { "tag": "Remote-DNS", "address": "tls://8.8.8.8", "address_resolver": "Remote-DNS-Resolver", "detour": "DestinationHK" },
       { "tag": "Remote-DNS-Resolver", "address": "8.8.8.8", "detour": "Direct" }
     ],
     "rules":
     [
-      { "action": "route", "server": "Local-DNS", "outbound": "DestinationHK" },
+      { "action": "route", "server": "Local-DNS", "outbound": "any" },
       { "action": "route", "server": "Local-DNS", "clash_mode": "direct" },
       { "action": "route", "server": "Remote-DNS", "clash_mode": "global" },
       { "action": "route", "server": "Local-DNS", "rule_set": [ "geosite-cn" ] },
       { "action": "route", "server": "Remote-DNS", "rule_set": [ "geosite-geolocation-!cn" ] }
     ],
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
     "final": "Remote-DNS"
   },
 
